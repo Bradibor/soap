@@ -20,14 +20,7 @@
 
     <xs:complexType name="organization">
         <xs:sequence>
-            <xs:element name="name">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="full_name" type="xs:string"/>
-                        <xs:element name="short_name" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="name" type="tns:name"/>
             <xs:element name="okveds">
                 <xs:complexType>
                     <xs:sequence>
@@ -50,20 +43,13 @@
                         <xs:element name="founder" maxOccurs="unbounded">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="name">
-                                        <xs:complexType>
-                                            <xs:sequence>
-                                                <xs:element name="full_name" type="xs:string"/>
-                                                <xs:element name="short_name" type="xs:string"/>
-                                            </xs:sequence>
-                                        </xs:complexType>
-                                    </xs:element>
+                                    <xs:element name="name" type="tns:name"/>
                                     <xs:element name="entity_type" type="xs:string"/>
                                     <xs:element name="capital">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="size" maxOccurs="unbounded" type="xs:long"/>
-                                                <xs:element name="percent" type="xs:long"/>
+                                                <xs:element name="size" type="xs:long"/>
+                                                <xs:element name="percent" type="xs:double"/>
                                             </xs:sequence>
                                         </xs:complexType>
                                     </xs:element>
@@ -77,16 +63,10 @@
             <xs:element name="leaders">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="leader">
+                        <xs:element name="leader" maxOccurs="unbounded">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="name">
-                                        <xs:complexType>
-                                            <xs:sequence>
-                                                <xs:element name="full_name" type="xs:string"/>
-                                            </xs:sequence>
-                                        </xs:complexType>
-                                    </xs:element>
+                                    <xs:element name="name" type="tns:name"/>
                                     <xs:element name="entity_type" type="xs:string"/>
                                     <xs:element name="position_name" type="xs:string"/>
                                 </xs:sequence>
@@ -101,5 +81,12 @@
         <xs:attribute name="ogrn" type="xs:long"/>
         <xs:attribute name="inn" type="xs:long"/>
         <xs:attribute name="kpp" type="xs:long"/>
+    </xs:complexType>
+
+    <xs:complexType name="name">
+        <xs:sequence>
+            <xs:element name="full_name" type="xs:string"/>
+            <xs:element name="short_name" type="xs:string"/>
+        </xs:sequence>
     </xs:complexType>
 </xs:schema>
