@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.mirea.ru/orgserver/model"
+           targetNamespace="http://www.mirea.ru/orgserver/model" elementFormDefault="qualified">
+
+    <xs:element name="getOrganizationByOgrnRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ogrn" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrganizationByOgrnResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="organization" type="tns:organization"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="organization">
+        <xs:sequence>
+            <xs:element name="name">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="full_name" type="xs:string"/>
+                        <xs:element name="short_name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="okveds">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="okved" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="code" type="xs:string"/>
+                                    <xs:element name="name" type="xs:string"/>
+                                </xs:sequence>
+                                <xs:attribute name="version" type="xs:long"/>
+                                <xs:attribute name="main" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="founders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="founder" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="full_name" type="xs:string"/>
+                                                <xs:element name="short_name" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="entity_type" type="xs:string"/>
+                                    <xs:element name="capital">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="size" maxOccurs="unbounded" type="xs:long"/>
+                                                <xs:element name="percent" type="xs:long"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                                <xs:attribute name="ogrn" type="xs:long"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="leaders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="leader">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="full_name" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="entity_type" type="xs:string"/>
+                                    <xs:element name="position_name" type="xs:string"/>
+                                </xs:sequence>
+                                <xs:attribute name="ogrn" type="xs:long"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="status" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="ogrn" type="xs:long"/>
+        <xs:attribute name="inn" type="xs:long"/>
+        <xs:attribute name="kpp" type="xs:long"/>
+    </xs:complexType>
+</xs:schema>
