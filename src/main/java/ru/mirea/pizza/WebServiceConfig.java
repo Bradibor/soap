@@ -1,4 +1,4 @@
-package ru.mirea.soap;
+package ru.mirea.pizza;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,18 +22,18 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "countries")
+    @Bean(name = "pizza")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("CountriesPort");
+        wsdl11Definition.setPortTypeName("PizzaPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.mirea.ru/soap");
+        wsdl11Definition.setTargetNamespace("http://www.mirea.ru/pizza");
         wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("countries.xsd"));
+    public XsdSchema pizzaSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("pizza.xsd"));
     }
 }

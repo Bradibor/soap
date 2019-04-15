@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pza="http://www.mirea.ru/pizza"
+           targetNamespace="http://www.mirea.ru/pizza" elementFormDefault="qualified">
+
+    <xs:element name="registerUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registerUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showIngridientsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showIngridientsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ingridient" type="pza:topping" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="makePizzaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+                <xs:element name="pizza" type="pza:pizza"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="makePizzaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showPizzaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showPizzaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+                <xs:element name="pizza" type="pza:pizza" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="makeOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="order" type="pza:order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="makeOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="pza:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="showOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="order" type="pza:order" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="pizza">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="size" type="xs:int"/>
+            <xs:element name="dough" type="xs:string"/>
+            <xs:element name="toppings" type="pza:toppings"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="login" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="topping">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="toppings">
+        <xs:sequence>
+            <xs:element name="topping" type="pza:topping" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="order">
+        <xs:sequence>
+            <xs:element name="user" type="pza:user"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="pizza" type="pza:pizza" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
